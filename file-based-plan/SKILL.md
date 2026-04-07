@@ -1,20 +1,22 @@
 ---
 name: file-based-plan
-description: 当用户要求 Agent 阅读 specs/ 下的某个 proposal 文件并**做计划**时需要使用本技能；用户要求执行的时候不需要。
+description: Use this skill when the user asks the Agent to read a proposal file under specs/ and **make a plan**; it is not needed when the user asks to execute.
 ---
 
-# 基于文件的计划
+# File-Based Planning
 
-首先，请了解： `specs/<spec-name>` 是规格书目录，`proposal.md` 文件是用户的原始需求。
-除非明确要求，否则不应改动用户的原始需求。
+First, please understand: `specs/<spec-name>` is the specifications directory, and the `proposal.md` file contains the user's original requirements.
+Unless explicitly requested, the user's original requirements should not be modified.
 
-当你需要撰写计划时：
+When you need to draft a plan:
 
-- 探索代码，并规划系统设计，不清楚的地方询问用户，搞清楚设计细节
-- 在规格书目录下新增 `design.md` 并简述你的系统和架构设计
-- 如果需要设计 api，请在规格书目录下新增 `api.md` 并罗列相关 API 设计
-- 如果需要引入第三方库，或者手动实现某个众所周知的算法，请也在 `design.md` 里说明
-- 最后，请一定把你的详细执行计划，保存在规格书目录下的 `plan.md` 这个文件里。不要保存去别的地方
+- Explore the code and plan the system design. Ask the user about anything unclear to clarify the design details, trade-offs, and context.
+- Create a new `design.md` file in the specifications directory and briefly describe your system and architectural design.
+- If you need to introduce third-party libraries or manually implement a well-known algorithm, please also explain this in `design.md`.
+- If API design is needed, create a new `api.md` file in the specifications directory and list the relevant API designs.
+- Save your detailed execution plan in the `plan.md` file under the specifications directory. Be sure not save it anywhere else.
+- Present only the final approach and exclude all intermediate thought processes or alternative plans.
+- Finally, check your design and plan to ensure that there are no waffling or indecisive wording in all the design, plan or api docs. If there any, edit and remove them.
 
-如果用户已经创建了 `proposal.md` ，你只需要读取。
-如果用户没有创建，你需要将创建合适的目录，并且将用户原始需求写进去。目录命名为 `YYYY-MM-DD-spec-slug`
+If the user has already created `proposal.md`, you only need to read it.
+If the user has not created it, you need to create an appropriate directory and write the user's original requirements into it. The directory should be named in the format `YYYY-MM-DD-spec-slug`.

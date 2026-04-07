@@ -1,17 +1,17 @@
 ---
 name: implement-file-based-plan
-description: 当用户要求 Agent 执行某个 spec 时读取该技能。
+description: Read this skill when the user requests the Agent to execute a spec.
 ---
 
-# 执行一个基于文件的计划
+# Execute a File-Based Plan
 
-首先，请了解： `specs/<spec-name>` 是规格书目录，`proposal.md` 文件是用户的原始需求。
+First, please note: `specs/<spec-name>` is the specifications directory, and the `proposal.md` file contains the user's original requirements.
 
-请直接尝试读取规格书目录下的以下文件，无需检查是否存在（不存在的文件忽略即可）：
+Please attempt to read the following files directly from the specifications directory without checking if they exist (simply ignore any non-existent files):
 
-* `proposal.md` - 这是用户的原始需求
-* `design.md` - 这是这个任务的大体设计
-* `api.md` - 这是这个任务涉及的 API 设计
-* `plan.md` - 这是具体的执行计划
+- `proposal.md` - This contains the user's original requirements
+- `design.md` - This is the high-level design for this task
+- `api.md` - This is the API design involved in this task
+- `plan.md` - This is the specific execution plan
 
-读取后，请按 `plan.md` 执行你的计划。如果 plan 中有多步，请创建任务列表并使用它管理你的执行进展。
+Once read, please execute your plan according to `plan.md`. If the plan consists of multiple steps, please create a task list and use it to manage your execution progress.
