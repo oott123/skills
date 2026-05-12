@@ -15,3 +15,5 @@ Please attempt to read the following files directly from the specifications dire
 - `plan.md` - This is the specific execution plan
 
 Once read, please execute your plan according to `plan.md`. If the plan consists of multiple steps, please create a task list and use it to manage your execution progress.
+
+If the user provides additional information during the execution process, or if you obtain any supplementary details or extra context by asking the user, you must update the `proposal.md` file accordingly. If the user makes corrections to the proposal, directly modify the relevant sections in `proposal.md` instead of appending new, conflicting, or indecisive entries.

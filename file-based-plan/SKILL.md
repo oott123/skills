@@ -15,6 +15,7 @@ When you need to draft a plan:
 - If you need to introduce third-party libraries or manually implement a well-known algorithm, please also explain this in `design.md`.
 - If API design is needed, create a new `api.md` file in the specifications directory and list the relevant API designs.
 - Save your detailed execution plan in the `plan.md` file under the specifications directory. Be sure not save it anywhere else.
+- If the user provides additional information during the planning or execution process, or if you obtain any supplementary details or extra context by asking the user, you must update the `proposal.md` file accordingly. If the user makes corrections to the proposal, directly modify the relevant sections in `proposal.md` instead of appending new, conflicting, or indecisive entries. This can be considered as explicitly requested modifications to the user's original requirements so modifications is allowed.
 - Present only the final approach and exclude all intermediate thought processes or alternative plans.
 - Finally, check your design and plan to ensure that there are no waffling or indecisive wording in all the design, plan or api docs. If there any, edit and remove them.
 
