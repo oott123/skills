@@ -1,5 +1,5 @@
 ---
-name: implement-file-based-plan
+name: execute-file-based-plan
 description: Read this skill when the user requests the Agent to execute a spec.
 ---
 
