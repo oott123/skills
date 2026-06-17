@@ -1,6 +1,6 @@
 ---
 name: file-based-plan
-description: Use this skill when the user asks the Agent to read a proposal file under specs/ and **make a plan**; it is not needed when the user asks to execute.
+description: Use this skill when the user asks the Agent to read a proposal file under specs/ and **make a plan**, or when user referenced to this skill; It is not needed when the user asks to execute.
 ---
 
 # File-Based Planning
