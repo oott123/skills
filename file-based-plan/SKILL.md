@@ -8,7 +8,16 @@ description: Use this skill when the user asks the Agent to read a proposal file
 First, please understand: `specs/<spec-name>` is the specifications directory, and the `proposal.md` file contains the user's original requirements.
 Unless explicitly requested, the user's original requirements should not be modified.
 
-When you need to draft a plan:
+## When user call this skill in prompt explicitly
+
+The user wants you to create a plan; DO NOT modify any code. Check the argument of the skill:
+
+- If the argument is a slug (which follows the format `YYYY-MM-DD-spec-slug`), that means the user has already created `proposal.md`, you need to read it instead of creating one.
+- If not, the argument is user's proposal, you need to create an appropriate directory and write the user's original requirements into it. The directory should be named in the format `YYYY-MM-DD-spec-slug`. In this case, without explicitly mentioned or user approve, DO NOT merge the new requirements into any old specs you found, but keep them as a reference in new spec.
+
+Then follows the instructions below to draft a plan.
+
+## When you need to draft a plan
 
 - Explore the code and plan the system design. Ask the user about anything unclear to clarify the design details, trade-offs, and context.
 - Create a new `design.md` file in the specifications directory and briefly describe your system and architectural design.
@@ -19,5 +28,7 @@ When you need to draft a plan:
 - Present only the final approach and exclude all intermediate thought processes or alternative plans.
 - Finally, check your design and plan to ensure that there are no waffling or indecisive wording in all the design, plan or api docs. If there any, edit and remove them.
 
-If the user has already created `proposal.md`, you only need to read it.
-If the user has not created it, you need to create an appropriate directory and write the user's original requirements into it. The directory should be named in the format `YYYY-MM-DD-spec-slug`.
+## When making the system design
+
+- **No unsolicited compatibility layers.** DO NOT introduce compatibility shims, fallbacks, deprecated-path branches, or any code whose purpose is to preserve old behavior — unless the user explicitly asks for it. Prefer clean replacements that update all call sites. If you genuinely believe a compatibility layer is unavoidable or strongly warranted, **stop and ask the user before writing it**.
+- **Fail fast on input; do not be lenient.** DO NOT add forgiving normalization of user/API input — no silent trimming of whitespace, no case-folding, no coercing empty strings to defaults, no "did you mean" guessing, no accepting near-miss formats. Validate strictly and reject invalid input with a clear error. Only relax this when the user explicitly asks for it.
