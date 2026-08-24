@@ -27,6 +27,14 @@ todou spec status $ISSUE_ID
 
 读取标题有助于了解该 issue 的主旨。检查 spec 最后一个版本是否为 approved - 如果不是，则停止工作，并要求用户先批准计划。
 
+如果有 spec 就不需要完整阅读 issue 了，但如果完全没有 spec，请阅读 issue 本体：
+
+```bash
+todou issue view $ISSUE_ID
+```
+
+并了解 issue 主题或者最新的评论中是否含有明确的任务，例如 bug 修复或者简单的功能实现。如果有，则直接按指示工作。否则停下来向用户汇报无法继续实现。
+
 ## 开始工作
 
 创建一个 scratch 目录，并使用 todou cli 拉取 specs、将卡片置于 "In Progress" 状态。
@@ -48,6 +56,8 @@ Once read, please execute your plan according to `plan.md`. If the plan consists
 If the user provides additional information during the execution process, or if you obtain any supplementary details or extra context by asking the user, you must update the `proposal.md` file accordingly. If the user makes corrections to the proposal, directly modify the relevant sections in `proposal.md` instead of appending new, conflicting, or indecisive entries.
 
 ## 完成工作
+
+将改动提交。如果当前在 master 上，那么就提交到 master，而不是新建分支。如果当前是一个在 worktree 上的 subagent，提交后让主 agent 合回 master。
 
 将卡片置于 "Ready to Ship" 状态：
 
