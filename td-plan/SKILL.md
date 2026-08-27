@@ -27,10 +27,10 @@ Then follows the instructions below to draft a plan. 创建这些文件时，使
 
 - You need to create an scratch directory 比如说 `/tmp/plan-name` and write the user's original requirements into a file named `proposal.md` in it.
 - Explore the code and plan the system design. Use explore/scout/researcher sub agents if needed. Ask the user about anything unclear to clarify the design details, trade-offs, and context.
-- Create a new `design.md` file in the specifications directory and briefly describe your system and architectural design.
+- Create a new `design.md` file in the scratch directory and briefly describe your system and architectural design.
 - If you need to introduce third-party libraries or manually implement a well-known algorithm, please also explain this in `design.md`.
-- If API design is needed, create a new `api.md` file in the specifications directory and list the relevant API designs.
-- Save your detailed execution plan in the `plan.md` file under the specifications directory. Be sure not save it anywhere else.
+- If API design is needed, create a new `api.md` file in the scratch directory and list the relevant API designs.
+- Save your detailed execution plan in the `plan.md` file under the scratch directory. Be sure not save it anywhere else.
 - If the user provides additional information during the planning or execution process, or if you obtain any supplementary details or extra context by asking the user, you must update the `proposal.md` file accordingly. If the user makes corrections to the proposal, directly modify the relevant sections in `proposal.md` instead of appending new, conflicting, or indecisive entries. This can be considered as explicitly requested modifications to the user's original requirements so modifications is allowed.
 - Present only the final approach and exclude all intermediate thought processes or alternative plans.
 - Finally, check your design and plan to ensure that there are no waffling or indecisive wording in all the design, plan or api docs. If there any, edit and remove them.
@@ -106,4 +106,8 @@ todou issue watch $ISSUE_ID --type spec_review --since "$(todou watch --poll --j
 
 ## 完成计划
 
-当你的计划通过后，如果用户没有说立即执行，则不要执行。清理你创建的后台终端（如果有），然后结束会话。
+当你的计划通过后，如果用户没有说立即执行，则不要执行。清理你创建的后台终端（如果有），将卡片置于 `Next` 状态，然后结束会话。
+
+```bash
+todou issue edit $ISSUE_ID --status "Next"
+```
