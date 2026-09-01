@@ -89,6 +89,16 @@ description: 在撰写面向用户的注释、文档、回复时，请先阅读�
 + 显式指定 classic，签发参数才不会随对方调整默认值而变化。
 ```
 
+```diff
+- 新增 `ZmqTransferEngine` TCP 数据面并接线 `--disagg-transfer-backend`
++ 新增 `ZmqTransferEngine` TCP 数据平面，然后添加 `--disagg-transfer-backend` 对应的逻辑
+```
+
+```diff
+- 位精确契约不受拆分影响
++ 拆分不影响 bit-extract
+```
+
 已有简单词汇时，避免使用含义更丰富的词汇：
 
 ```diff
