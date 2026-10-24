@@ -100,6 +100,8 @@ EOF
 )
 ```
 
+spec 和评论中的 Markdown 语法都支持 mermaid 渲染，可以使用 code block 中的 mermaid 以渲染线框图/流程图而不是 ascii art。
+
 提交完成后，根据用户回复进行如下处理：
 
 - **request-changes** (or annotations arrive):
