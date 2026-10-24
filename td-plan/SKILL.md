@@ -40,6 +40,27 @@ Then follows the instructions below to draft a plan. 创建这些文件时，使
 - **No unsolicited compatibility layers.** DO NOT introduce compatibility shims, fallbacks, deprecated-path branches, or any code whose purpose is to preserve old behavior — unless the user explicitly asks for it. Prefer clean replacements that update all call sites. If you genuinely believe a compatibility layer is unavoidable or strongly warranted, **stop and ask the user before writing it**.
 - **Fail fast on input; do not be lenient.** DO NOT add forgiving normalization of user/API input — no silent trimming of whitespace, no case-folding, no coercing empty strings to defaults, no "did you mean" guessing, no accepting near-miss formats. Validate strictly and reject invalid input with a clear error. Only relax this when the user explicitly asks for it.
 
+## 后台监听卡片
+
+Keep one running in the background, for listening the user's answer or comments or spec approval:
+
+```bash
+todou issue watch $ISSUE_ID --since <cursor> --debounce 60 --forever
+```
+
+Before you start it, run `todou agent can-i-follow` and follow the instructions there.
+
+Run it without `--json`: the line format carries each comment's opening, which is what you act on.
+
+- Run `todou agent can-i-follow` and do what it says. It prints the instructions for this harness.
+- Wait from the cursor the write itself printed: `spec push` and `comment add` end with a `cursor:`
+  line holding their own position, and a cursor taken afterwards can already be past the answer.
+- A wait killed from outside (the harness stopping a background task) is your wake-up, not an error:
+  restart it with the same cursor, every time.
+- Resume from the closing `cursor:` line.
+- `issue watch`, `todou watch` and `spec wait` skip entries from your own agent session rather than
+  your whole account.
+
 ## 问问题
 
 做计划时需要与用户澄清的问题，需要使用 todou CLI 将问题提交到平台上，并等待用户回复。
@@ -56,19 +77,11 @@ EOF
 )
 ```
 
-提交完成后，使用一个后台命令，以等待用户回复：
-
-```bash
-todou question wait $ISSUE_ID $COMMENT_ID --timeout 3000
-```
-
 - All text fields are markdown; validation is **strict** — unknown/extra fields fail with the path named.
 - Users answer once, all questions in the comment together; "decline to answer" is a built-in exclusive
   choice; options and free-text "other" can coexist. Answers arrive decoded in the wait output.
 - Exit codes follow the watch convention (0 answered / 3 timeout — re-wait / 1 error).
 - One comment may carry 1–4 tightly related questions, each with your recommendation and reasoning.
-
-如果用户在时限内没有回复，则停止工作。
 
 ## 提交计划
 
@@ -87,13 +100,7 @@ EOF
 )
 ```
 
-提交完成后，使用一个后台命令，以等待用户回复：
-
-```bash
-todou issue watch $ISSUE_ID --type spec_review --since "$(todou watch --poll --json | jq -r .next_cursor)" --timeout 3000
-```
-
-根据用户回复进行如下处理：
+提交完成后，根据用户回复进行如下处理：
 
 - **request-changes** (or annotations arrive):
   `todou spec comments $ISSUE_ID --unresolved` lists inline annotations with file + anchor.
@@ -110,4 +117,14 @@ todou issue watch $ISSUE_ID --type spec_review --since "$(todou watch --poll --j
 
 ```bash
 todou issue edit $ISSUE_ID --status "Next"
+```
+
+## Waiting: watch, question wait, spec wait
+
+```bash
+todou agent can-i-follow                                               # ask first, then do what it prints
+todou issue watch 16 -p <proj> --since <cursor> --forever              # one issue
+todou question wait 16 <commentId> -p <proj> --forever                 # answers to one question comment
+todou spec push 16 <dir> -p <proj> --message "v2" --wait               # push, then wait for the verdict
+todou spec wait 16 -p <proj> [--since <cursor>]                        # re-enter that wait
 ```

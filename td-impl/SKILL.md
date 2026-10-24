@@ -82,30 +82,6 @@ todou spec push $ISSUE_ID $SCRATCH_IDR --message "v2"
 
 ## 请求澄清或修改计划
 
-如果在工作过程中，需要向用户询问问题或请求澄清，需要使用 todou CLI 将问题提交到平台上，并等待用户回复。
+如果在工作过程中，需要向用户询问问题或请求澄清，需要使用 todou CLI 将问题提交到平台上，并等待用户回复（不要使用自带 AskUserQuestion 工具）。
 
-Do not use AskUserQuestion or any built-in tools:
-
-```bash
-todou comment add $ISSUE_ID --body-file <(cat <<'EOF'
-question context here...
-EOF
-) --questions <(cat <<'EOF'
-[{"header": "Storage", "question": "Where should X live?", "options": [{"label": "Reuse mechanism A", "description": "pros/cons…"}, {"label": "New entity"}], "multiple": false}]
-EOF
-)
-```
-
-提交完成后，使用一个后台命令，以等待用户回复：
-
-```bash
-todou question wait $ISSUE_ID $COMMENT_ID --timeout 3000
-```
-
-- All text fields are markdown; validation is **strict** — unknown/extra fields fail with the path named.
-- Users answer once, all questions in the comment together; "decline to answer" is a built-in exclusive
-  choice; options and free-text "other" can coexist. Answers arrive decoded in the wait output.
-- Exit codes follow the watch convention (0 answered / 3 timeout — re-wait / 1 error).
-- One comment may carry 1–4 tightly related questions, each with your recommendation and reasoning.
-
-如果用户在时限内没有回复，则停止工作。
+此时你应该加载 `/td-plan` 技能以获取细节。
