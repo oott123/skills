@@ -55,6 +55,8 @@ Once read, please execute your plan according to `plan.md`. If the plan consists
 
 If the user provides additional information during the execution process, or if you obtain any supplementary details or extra context by asking the user, you must update the `proposal.md` file accordingly. If the user makes corrections to the proposal, directly modify the relevant sections in `proposal.md` instead of appending new, conflicting, or indecisive entries.
 
+DO NOT leak conversation, prompt, or iteration history into code comments, such as "changed from" / "previously" / "used to be" / "as requested" / "the user asked". Leave them in spec docs instead if you really need them.
+
 ## 完成工作
 
 将改动提交。如果当前在 master 上，那么就提交到 master，而不是新建分支。如果当前是一个在 worktree 上的 subagent，提交后让主 agent 合回 master。

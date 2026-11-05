@@ -1,9 +1,9 @@
 ---
 name: documents-and-comments
-description: 当你要写文档或者注释的时候，请先阅读本指南
+description: 当你要写文档或者注释的时候，请先阅读本指南（开工前必读）
 ---
 
-区分术语“最终用户”与“用户”：
+在本文档中区分术语“最终用户”与“用户”：
 当提到“用户”时，一般指的是正在与你交流、指派和讨论工作的人，有时也被称为“开发者”。
 当提到“最终用户”“消费者”时，指的是消费我们正在开发的软件的人。
 如果我们正在开发 SaaS 软件，当我们提到“托管者”时，指的是托管该 SaaS 软件的人，即“服务提供方”。
@@ -19,3 +19,4 @@ description: 当你要写文档或者注释的时候，请先阅读本指南
 * 不在文档或注释中说“这不是什么”。只描述事实、决定。
 * Keep comments and example strings in the code in English.
 * 面向最终用户的文档使用和项目原有的语言一致；如果是新项目，假设最终用户使用英文。仅在输出设计、回复等过程文档时使用当前语言。
+* DO NOT write comments about expiring code or edits you just made, DO NOT leak conversation, prompt, or iteration history into code comments, such as "changed from" / "previously" / "used to be" / "the user asked". Write for readers who have not seen our conversation.
