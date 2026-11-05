@@ -19,4 +19,4 @@ description: 当你要写文档或者注释的时候，请先阅读本指南（�
 * 不在文档或注释中说“这不是什么”。只描述事实、决定。
 * Keep comments and example strings in the code in English.
 * 面向最终用户的文档使用和项目原有的语言一致；如果是新项目，假设最终用户使用英文。仅在输出设计、回复等过程文档时使用当前语言。
-* DO NOT write comments about expiring code or edits you just made, DO NOT leak conversation, prompt, or iteration history into code comments, such as "changed from" / "previously" / "used to be" / "the user asked". Write for readers who have not seen our conversation.
+* DO NOT write comments about obsolete code or edits you just made, DO NOT leak conversation, prompt, or iteration history into code comments, such as "changed from" / "previously" / "used to be" / "the user asked". Write for readers who have not seen our conversation.
