@@ -37,6 +37,7 @@ Then follows the instructions below to draft a plan. 创建这些文件时，使
 - Present only the final approach and exclude all intermediate thought processes or alternative plans.
 - Finally, check your design and plan to ensure that there are no waffling or indecisive wording in all the design, plan or api docs. If there any, edit and remove them.
 - 如果你的计划有不明确的地方需要做验证，在写计划之前就可以做，你可以执行任何你想做的验证；如果工作区有其它工作正在进行，你也可以创建 worktree 来做。
+- 在这个阶段如果有一些展示性的验证成果，比如原型图、mock 测试截图等，如果需要用户了解的，也可以通过 `todou attach` 上传到 todou 上。没有就没必要传，也没必要特意做。
 
 ### When making the system design
 
