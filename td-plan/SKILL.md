@@ -15,6 +15,8 @@ Todou 是我们的任务追踪平台。
 
 通常你可以直接使用文本模式与 todou cli 交互。如果你偶尔需要结构化数据输出，请将 `--json` 加到 `todou` 之后。
 
+如果需要，你可以使用 `todou attach` 上传图片、HTML 或者其它类型的附件到卡片上。用户可以方便地预览这些附件。
+
 ## 做计划
 
 本技能的参数应该是一个 issue 卡片/链接。如果用户提供的是一段自然语言文本描述，请先创建一个 issue。
@@ -34,6 +36,7 @@ Then follows the instructions below to draft a plan. 创建这些文件时，使
 - If the user provides additional information during the planning or execution process, or if you obtain any supplementary details or extra context by asking the user, you must update the `proposal.md` file accordingly. If the user makes corrections to the proposal, directly modify the relevant sections in `proposal.md` instead of appending new, conflicting, or indecisive entries. This can be considered as explicitly requested modifications to the user's original requirements so modifications is allowed.
 - Present only the final approach and exclude all intermediate thought processes or alternative plans.
 - Finally, check your design and plan to ensure that there are no waffling or indecisive wording in all the design, plan or api docs. If there any, edit and remove them.
+- 如果你的计划有不明确的地方需要做验证，在写计划之前就可以做，你可以执行任何你想做的验证；如果工作区有其它工作正在进行，你也可以创建 worktree 来做。
 
 ### When making the system design
 

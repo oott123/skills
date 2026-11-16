@@ -57,6 +57,8 @@ If the user provides additional information during the execution process, or if 
 
 DO NOT leak conversation, prompt, or iteration history into code comments, such as "changed from" / "previously" / "used to be" / "as requested" / "the user asked". Leave them in spec docs instead if you really need them.
 
+如果发现工作目录原有的代码就有明显的错误以至于影响你的测试，应该顺手改掉、单独提交，并在卡片上汇报你的发现和改动。
+
 ## 完成工作
 
 将改动提交。如果当前在 master 上，那么就提交到 master，而不是新建分支。如果当前是一个在 worktree 上的 subagent，提交后让主 agent 合回 master。
