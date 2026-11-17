@@ -15,6 +15,8 @@ Todou 是我们的任务追踪平台。
 
 通常你可以直接使用文本模式与 todou cli 交互。如果你偶尔需要结构化数据输出，请将 `--json` 加到 `todou` 之后。
 
+如果需要，你可以使用 `todou attach` 上传图片、HTML 或者其它类型的附件到卡片上。用户可以方便地预览这些附件。
+
 ## 读取 issue 标题和 spec 状态
 
 本技能的参数应该是一个 issue 卡片/链接。 ISSUE_ID 是 issue 编号。
@@ -83,6 +85,8 @@ EOF
 ```bash
 todou spec push $ISSUE_ID $SCRATCH_IDR --message "v2"
 ```
+
+如果有一些展示性的验证成果，比如手动集成测试过程中的功能截图等，如果需要用户了解的，也可以通过 `todou attach` 上传到 todou 上。没有就没必要传，也没必要为了要上传专门去截图。
 
 ## 请求澄清或修改计划
 
