@@ -84,7 +84,7 @@ spec 和评论中的 Markdown 语法都支持 mermaid 渲染，可以使用 code
   Apply them to the documents, sync requirement changes into proposal.md, then
   `todou spec resolve $ISSUE_ID <commentIds…>` for each addressed annotation and
   `todou spec push $ISSUE_ID $SCRATCH_DIR --if-version <v> --message "plan v2"`. Wait again. Repeat until approved.
-- **approve** → proceed.
+- **approve** → proceed. 在开始工作前，请阅读 `/td-impl` 技能。
 
 ## 进行调查
 
