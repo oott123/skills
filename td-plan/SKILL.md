@@ -17,6 +17,8 @@ Todou 是我们的任务追踪平台。
 
 如果需要，你可以使用 `todou attach` 上传图片、HTML 或者其它类型的附件到卡片上。用户可以方便地预览这些附件。
 
+请阅读 `td-watch-and-ask` 技能，你需要它来与用户通过 todou 交互。
+
 ## 做计划
 
 本技能的参数应该是一个 issue 卡片/链接。如果用户提供的是一段自然语言文本描述，请先创建一个 issue。
@@ -43,49 +45,6 @@ Then follows the instructions below to draft a plan. 创建这些文件时，使
 
 - **No unsolicited compatibility layers.** DO NOT introduce compatibility shims, fallbacks, deprecated-path branches, or any code whose purpose is to preserve old behavior — unless the user explicitly asks for it. Prefer clean replacements that update all call sites. If you genuinely believe a compatibility layer is unavoidable or strongly warranted, **stop and ask the user before writing it**.
 - **Fail fast on input; do not be lenient.** DO NOT add forgiving normalization of user/API input — no silent trimming of whitespace, no case-folding, no coercing empty strings to defaults, no "did you mean" guessing, no accepting near-miss formats. Validate strictly and reject invalid input with a clear error. Only relax this when the user explicitly asks for it.
-
-## 后台监听卡片
-
-Keep one running in the background, for listening the user's answer or comments or spec approval:
-
-```bash
-todou issue watch $ISSUE_ID --since <cursor> --debounce 60 --forever
-```
-
-Before you start it, run `todou agent can-i-follow` and follow the instructions there.
-
-Run it without `--json`: the line format carries each comment's opening, which is what you act on.
-
-- Run `todou agent can-i-follow` and do what it says. It prints the instructions for this harness.
-- Wait from the cursor the write itself printed: `spec push` and `comment add` end with a `cursor:`
-  line holding their own position, and a cursor taken afterwards can already be past the answer.
-- A wait killed from outside (the harness stopping a background task) is your wake-up, not an error:
-  restart it with the same cursor, every time.
-- Resume from the closing `cursor:` line.
-- `issue watch`, `todou watch` and `spec wait` skip entries from your own agent session rather than
-  your whole account.
-
-## 问问题
-
-做计划时需要与用户澄清的问题，需要使用 todou CLI 将问题提交到平台上，并等待用户回复。
-
-Do not use AskUserQuestion or any built-in tools:
-
-```bash
-todou comment add $ISSUE_ID --body-file <(cat <<'EOF'
-question context here...
-EOF
-) --questions <(cat <<'EOF'
-[{"header": "Storage", "question": "Where should X live?", "options": [{"label": "Reuse mechanism A", "description": "pros/cons…"}, {"label": "New entity"}], "multiple": false}]
-EOF
-)
-```
-
-- All text fields are markdown; validation is **strict** — unknown/extra fields fail with the path named.
-- Users answer once, all questions in the comment together; "decline to answer" is a built-in exclusive
-  choice; options and free-text "other" can coexist. Answers arrive decoded in the wait output.
-- Exit codes follow the watch convention (0 answered / 3 timeout — re-wait / 1 error).
-- One comment may carry 1–4 tightly related questions, each with your recommendation and reasoning.
 
 ## 提交计划
 
@@ -124,13 +83,6 @@ spec 和评论中的 Markdown 语法都支持 mermaid 渲染，可以使用 code
 ```bash
 todou issue edit $ISSUE_ID --status "Next"
 ```
+## 返工
 
-## Waiting: watch, question wait, spec wait
-
-```bash
-todou agent can-i-follow                                               # ask first, then do what it prints
-todou issue watch 16 -p <proj> --since <cursor> --forever              # one issue
-todou question wait 16 <commentId> -p <proj> --forever                 # answers to one question comment
-todou spec push 16 <dir> -p <proj> --message "v2" --wait               # push, then wait for the verdict
-todou spec wait 16 -p <proj> [--since <cursor>]                        # re-enter that wait
-```
+有时 issue 上已经有被通过的计划。此时可能是用户对原计划有了新的想法，需要返工，你需要留意 issue 最后几条评论。
