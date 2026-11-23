@@ -45,3 +45,7 @@ Rules:
 - `mise run build` will build the whole project, with local cache if exists
 - Write a short description less than 80 chars
 - Use TOML tasks instead of file tasks
+
+## Migrate from Makefile
+
+If there are any Makefile exists in this project, and the project is not C, C++, or need Makefile for necessary features, migrate it into mise tasks.
