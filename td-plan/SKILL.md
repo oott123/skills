@@ -45,6 +45,7 @@ Then follows the instructions below to draft a plan. 创建这些文件时，使
 
 - **No unsolicited compatibility layers.** DO NOT introduce compatibility shims, fallbacks, deprecated-path branches, or any code whose purpose is to preserve old behavior — unless the user explicitly asks for it. Prefer clean replacements that update all call sites. If you genuinely believe a compatibility layer is unavoidable or strongly warranted, **stop and ask the user before writing it**.
 - **Fail fast on input; do not be lenient.** DO NOT add forgiving normalization of user/API input — no silent trimming of whitespace, no case-folding, no coercing empty strings to defaults, no "did you mean" guessing, no accepting near-miss formats. Validate strictly and reject invalid input with a clear error. Only relax this when the user explicitly asks for it.
+- **Track tech debt on todou, not in code.** Log any deferred designs or "maybe someday" ideas on todou only—do not leave placeholder comments or TODOs for them in the codebase.
 
 ## 提交计划
 
@@ -72,7 +73,7 @@ spec 和评论中的 Markdown 语法都支持 mermaid 渲染，可以使用 code
   Apply them to the documents, sync requirement changes into proposal.md, then
   `todou spec resolve $ISSUE_ID <commentIds…>` for each addressed annotation and
   `todou spec push $ISSUE_ID $SCRATCH_DIR --if-version <v> --message "plan v2"`. Wait again. Repeat until approved.
-- **approve** → proceed.
+- **approve** → File todou issues for any tech debt that needs tracking (if any), then move the card to "Next".
 
 如果用户在时限内没有回复，则停止工作。
 
