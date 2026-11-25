@@ -86,3 +86,5 @@ todou issue edit $ISSUE_ID --status "Next"
 ## 返工
 
 有时 issue 上已经有被通过的计划。此时可能是用户对原计划有了新的想法，需要返工，你需要留意 issue 最后几条评论。
+
+如果 issue 已经被实现（有 Done 的记录），在写 plan.md 时，应该把返工内容补在尾部，并标注前面已经实现完成。
