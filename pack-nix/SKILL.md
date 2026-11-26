@@ -1,6 +1,6 @@
 ---
 name: pack-nix
-description: 需要打包 nix 包的时候参考
+description: 主要是给已有程序添加 nix 打包、添加测试的时候看；修改 nixos 模块的时候也看看
 ---
 
 # 打包 nix
